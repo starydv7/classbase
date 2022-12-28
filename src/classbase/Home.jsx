@@ -10,7 +10,9 @@ class Home extends Component {
      }
   render() {
     return (
-      <div>Home</div>
+        <div>
+            {this.state.userName}
+      </div>
     )
   }
 }
