@@ -17,10 +17,10 @@ class Home extends Component {
             userName:this.state.userName==="Pawan"?"Yadav":"PawanYadav",
         })
     }
-    todoRowa = () =>
+    todoRows= () =>
         this.state.todoItems.map((item) => (
             <tr key={item.action}>
-                <td></td>
+                <td>{item.action}</td>
             </tr>
         ))
   render() {
@@ -30,6 +30,16 @@ class Home extends Component {
             <button onClick={this.changeState}>
                 Change
             </button>
+            <div>
+                <table className={styles.table}>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                        </tr>
+                    </thead>
+                    <tbody>{this.todoRows() }</tbody>
+                </table>
+            </div>
       </div>
     );
   }
