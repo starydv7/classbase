@@ -9,8 +9,13 @@ class Home extends Component {
             { action: "Buy Phone", done: false },
             { action: "Buy sim", done: true },
             { action: "Dentist at 5 pm", done: false },
-          ],
+            ],
+          newTodo:"",
         };
+    }
+    updateValue = (e) => {
+        this.setState({ newTodo: e.target.value });
+        
     }
     changeState = () => {
         this.setState({
@@ -24,24 +29,33 @@ class Home extends Component {
             </tr>
         ))
   render() {
-    return (
-      <div className={styles.container1}>
+      return (
+        <>
+          <div className={styles.container1}>
             <h2> {this.state.userName}</h2>
-            <button onClick={this.changeState}>
-                Change
-            </button>
-            <div>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th>Task</th>
-                        </tr>
-                    </thead>
-                    <tbody>{this.todoRows() }</tbody>
-                </table>
-            </div>
-      </div>
-    );
+            <button onClick={this.changeState}>Change</button>
+              </div>
+              <div className={styles.container2}>
+                  <input
+                      className={styles.container3}
+                      value={this.state.newTodo}
+                      onChange={this.updateValue}
+
+                  />
+                  
+              </div>
+          <div>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Task</th>
+                </tr>
+              </thead>
+              <tbody>{this.todoRows()}</tbody>
+            </table>
+          </div>
+        </>
+      );
   }
 }
 export default Home;
