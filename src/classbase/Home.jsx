@@ -7,7 +7,12 @@ class Home extends Component {
             userName: "Pawan",
             
         }
-     }
+    }
+    changeState = () => {
+        this.setState({
+            userName:this.state.userName==="Pawan"?"Yadav":"PawanYadav",
+        })
+    }
   render() {
     return (
       <div className={styles.container1}>
