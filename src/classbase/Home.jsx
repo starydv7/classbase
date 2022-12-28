@@ -4,9 +4,13 @@ class Home extends Component {
     constructor(props) {
         super();
         this.state = {
-            userName: "Pawan",
-            
-        }
+          userName: "Pawan",
+          todoItems: [
+            { action: "Buy Phone", done: false },
+            { action: "Buy sim", done: true },
+            { action: "Dentist at 5 pm", done: false },
+          ],
+        };
     }
     changeState = () => {
         this.setState({
