@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import styles from "../components/home.module.css";
+import { Navbar } from './Navbar';
 class Home extends Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
           userName: "Pawan",
           todoItems: [
@@ -21,27 +22,46 @@ class Home extends Component {
         this.setState({
             userName:this.state.userName==="Pawan"?"Yadav":"PawanYadav",
         })
-    }
+  }
+  toggleDone = (todo) => 
+    this.setState({
+      todoItems: this.state.todoItems.map((item) =>
+        item.action === todo.action ? { ...item, done: !item.done } : item),
+    });
     todoRows= () =>
         this.state.todoItems.map((item) => (
             <tr key={item.action}>
-                <td>{item.action}</td>
+            <td>{item.action}</td>
+            <td>
+              <input type="checkbox"
+                checked={item.done}
+                onChange={()=>this.toggleDone(item) }
+              />
+            </td>
             </tr>
         ))
+  newTodo = () => {
+    this.setState({
+      todoItems: [
+        ...this.state.todoItems,
+        {action:this.state.newTodo,done:false},
+      ],
+    })
+  }
   render() {
+    <Navbar name={this.state.userName}/>
       return (
         <>
-          <div className={styles.container1}>
-            <h2> {this.state.userName}</h2>
-            <button onClick={this.changeState}>Change</button>
-              </div>
+         
               <div className={styles.container2}>
                   <input
                       className={styles.container3}
                       value={this.state.newTodo}
                       onChange={this.updateValue}
 
-                  />
+            />
+            <br />
+            <button onClick={this.newTodo}>Add ToDo</button>
                   
               </div>
           <div>
@@ -49,6 +69,7 @@ class Home extends Component {
               <thead>
                 <tr>
                   <th>Task</th>
+                  <th>Complete</th>
                 </tr>
               </thead>
               <tbody>{this.todoRows()}</tbody>
